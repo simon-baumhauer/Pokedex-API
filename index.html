@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<script>
+    let currentPokemon;
+
+    async function loadPokemon() {
+        let url = 'https://pokeapi.co/api/v2/pokemon/charmander';
+        let response = await fetch(url);
+        currentPokemon = await response.json();
+        renderPokemonInfo()
+    }
+
+    function renderPokemonInfo() {
+        document.getElementById('pokemonName').innerHTML = currentPokemon['name'];
+    }
+</script>
+
+<body onload="loadPokemon()">
+    <div id="pokedex">
+        <h1 id="pokemonName"></h1>
+    </div>
+
+</body>
+
+</html>
