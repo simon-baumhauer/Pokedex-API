@@ -41,7 +41,12 @@
     }
 
     function selected(i) {
-        document.getElementById('pokemonName1').innerHTML += PokemonAsJson[i]['name'];
+        let statslength = PokemonAsJson[i]['stats'].length;
+        document.getElementById('pokemonName1').innerHTML = PokemonAsJson[i]['name'];
+        document.getElementById('pokemonImage-0').src = PokemonAsJson[i]['sprites']['other']['home']['front_default'];
+        for (let j = 0; j < statslength; j++) {
+            document.getElementById(`stat-0-` + j).innerHTML = `${PokemonAsJson[i]['stats'][j]['stat']['name']}${PokemonAsJson[i]['stats'][j]['base_stat']}`;
+        }
     }
 
 
@@ -65,10 +70,7 @@
     //     let statslength = currentPokemon['stats'].length;
     //     document.getElementById('pokemonName-' + i).innerHTML += currentPokemon['name'];
     //     document.getElementById('pokemonImage-' + i).src = currentPokemon['sprites']['other']['home']['front_default'];
-    //     for (let j = 0; j < statslength; j++) {
-    //         document.getElementById(`stat-${i}-` + j).innerHTML += currentPokemon['stats'][j]['stat']['name'];
-    //         document.getElementById(`stat-${i}-` + j).innerHTML += currentPokemon['stats'][j]['base_stat'];
-    //     }
+    //     
     // }
 </script>
 
