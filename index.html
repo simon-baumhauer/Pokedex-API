@@ -13,54 +13,84 @@
 </head>
 <script>
     let currentPokemon;
+    let pokemons = ['charmander', 'pikachu'];
 
     async function loadPokemon() {
-        let url = 'https://pokeapi.co/api/v2/pokemon/charmander';
-        let response = await fetch(url);
-        currentPokemon = await response.json();
-        console.log(currentPokemon);
-        renderPokemonInfo()
-    }
-
-    function renderPokemonInfo() {
-        document.getElementById('pokemonName').innerHTML = currentPokemon['name'];
-        document.getElementById('pokemonImage').src = currentPokemon['sprites']['other']['home']['front_default'];
-        let stats = currentPokemon['stats']
-        for (let i = 0; i < stats.length; i++) {
-            const element = stats[i];
-            document.getElementById('stat-' + i).innerHTML = currentPokemon['stats'][i]['stat']['name'];
-            document.getElementById('stat-' + i).innerHTML += currentPokemon['stats'][i]['base_stat'];
+        for (let i = 0; i < pokemons.length; i++) {
+            const pokemon = pokemons[i];
+            let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
+            let response = await fetch(url);
+            currentPokemon = await response.json();
+            console.log(currentPokemon);
+            renderPokemonInfo(i);
         }
-
     }
+
+    function renderPokemonInfo(i) {
+        let statslength = currentPokemon['stats'].length;
+        document.getElementById('pokemonName-' + i).innerHTML += currentPokemon['name'];
+        document.getElementById('pokemonImage-' + i).src = currentPokemon['sprites']['other']['home']['front_default'];
+        for (let j = 0; j < statslength; j++) {
+            document.getElementById(`stat-${i}-` + j).innerHTML += currentPokemon['stats'][j]['stat']['name'];
+            document.getElementById(`stat-${i}-` + j).innerHTML += currentPokemon['stats'][j]['base_stat'];
+        }
+    }
+
+
+    // // for (let j = 0; i < currentPokemon['stats'].length; j++) {
+    //          const stat = stats[j];
+    //         for (let j = 0; i < stats.length; j++) {
+    //          
+    //      }
 </script>
 
 <body onload="loadPokemon()">
     <div class="PokemonCard">
-        <div id="pokedex">
-            <h1 id="pokemonName"></h1>
+        <div class="pokedex1">
+            <h1 id="pokemonName-0"></h1>
 
         </div>
         <div class="info-container">
-            <div class="ImgCenter"><img id="pokemonImage" src="" alt=""></div>
+            <div class="ImgCenter"><img id="pokemonImage-0" src="" alt=""></div>
             <table>
-                <tr class="table-row" id="stat-0">
+                <tr class="table-row" id="stat-0-0">
                 </tr>
-                <tr class="table-row" id="stat-1">
+                <tr class="table-row" id="stat-0-1">
                 </tr>
-                <tr class="table-row" id="stat-2">
+                <tr class="table-row" id="stat-0-2">
                 </tr>
-                <tr class="table-row" id="stat-3">
+                <tr class="table-row" id="stat-0-3">
                 </tr>
-                <tr class="table-row" id="stat-4">
+                <tr class="table-row" id="stat-0-4">
                 </tr>
-                <tr class="table-row" id="stat-5">
+                <tr class="table-row" id="stat-0-5">
                 </tr>
             </table>
         </div>
     </div>
+    <div class="PokemonCard">
+        <div class="pokedex2">
+            <h1 id="pokemonName-1"></h1>
 
-
+        </div>
+        <div class="info-container">
+            <div class="ImgCenter"><img id="pokemonImage-1" src="" alt=""></div>
+            <table>
+                <tr class="table-row" id="stat-1-0">
+                </tr>
+                <tr class="table-row" id="stat-1-1">
+                </tr>
+                <tr class="table-row" id="stat-1-2">
+                </tr>
+                <tr class="table-row" id="stat-1-3">
+                </tr>
+                <tr class="table-row" id="stat-1-4">
+                </tr>
+                <tr class="table-row" id="stat-1-5">
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>

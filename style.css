@@ -1,9 +1,13 @@
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: rgb(212, 216, 230);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 100vh;
 }
 
-#pokedex {
+.pokedex1 {
     background-color: rgb(251, 108, 109);
     color: white;
     display: flex;
@@ -11,6 +15,20 @@ body {
     height: 50%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.pokedex2 {
+    background-color: rgb(255, 216, 111);
+    color: white;
+    display: flex;
+    padding: 24px;
+    height: 50%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.pokedex:last-of-type {
+    background-color: rgb(255, 216, 111);
 }
 
 .info-container {
