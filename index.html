@@ -14,40 +14,72 @@
 <script>
     let currentPokemon;
     let pokemons = ['charmander', 'pikachu'];
+    let PokemonCollections = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise', 'pikachu']
+    let PokemonAsJson = [];
+
 
     async function loadPokemon() {
-        for (let i = 0; i < pokemons.length; i++) {
-            const pokemon = pokemons[i];
-            let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
+        for (let i = 0; i < PokemonCollections.length; i++) {
+            const collectible = PokemonCollections[i];
+            let url = `https://pokeapi.co/api/v2/pokemon/${collectible}`;
             let response = await fetch(url);
             currentPokemon = await response.json();
+            PokemonAsJson.push(currentPokemon);
             console.log(currentPokemon);
             renderPokemonInfo(i);
         }
     }
 
+
     function renderPokemonInfo(i) {
-        let statslength = currentPokemon['stats'].length;
-        document.getElementById('pokemonName-' + i).innerHTML += currentPokemon['name'];
-        document.getElementById('pokemonImage-' + i).src = currentPokemon['sprites']['other']['home']['front_default'];
-        for (let j = 0; j < statslength; j++) {
-            document.getElementById(`stat-${i}-` + j).innerHTML += currentPokemon['stats'][j]['stat']['name'];
-            document.getElementById(`stat-${i}-` + j).innerHTML += currentPokemon['stats'][j]['base_stat'];
-        }
+        document.getElementById('PokemonCollections').innerHTML +=
+            `<div class="collectible" onclick='selected(${i})'>
+            <h3>${currentPokemon['name']}</h3>
+            <img id="PokemonCollectionsImg-${i}" class="CollectionImg">
+        </div>`;
+        document.getElementById('PokemonCollectionsImg-' + i).src = currentPokemon['sprites']['other']['home']['front_default'];
+    }
+
+    function selected(i) {
+        document.getElementById('pokemonName1').innerHTML += PokemonAsJson[i]['name'];
     }
 
 
-    // // for (let j = 0; i < currentPokemon['stats'].length; j++) {
-    //          const stat = stats[j];
-    //         for (let j = 0; i < stats.length; j++) {
-    //          
-    //      }
+
+
+
+
+
+    // async function loadPokemon() {
+    //     for (let i = 0; i < pokemons.length; i++) {
+    //         const pokemon = pokemons[i];
+    //         let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
+    //         let response = await fetch(url);
+    //         currentPokemon = await response.json();
+    //         console.log(currentPokemon);
+    //         renderPokemonInfo(i);
+    //     }
+    // }
+
+    // function renderPokemonInfo(i) {
+    //     let statslength = currentPokemon['stats'].length;
+    //     document.getElementById('pokemonName-' + i).innerHTML += currentPokemon['name'];
+    //     document.getElementById('pokemonImage-' + i).src = currentPokemon['sprites']['other']['home']['front_default'];
+    //     for (let j = 0; j < statslength; j++) {
+    //         document.getElementById(`stat-${i}-` + j).innerHTML += currentPokemon['stats'][j]['stat']['name'];
+    //         document.getElementById(`stat-${i}-` + j).innerHTML += currentPokemon['stats'][j]['base_stat'];
+    //     }
+    // }
 </script>
 
 <body onload="loadPokemon()">
+    <div class="PokemonCollections" id="PokemonCollections">
+        <h1>Pokedex</h1>
+    </div>
+
     <div class="PokemonCard">
         <div class="pokedex1">
-            <h1 id="pokemonName-0"></h1>
+            <h1 id="pokemonName1"></h1>
 
         </div>
         <div class="info-container">
@@ -70,7 +102,7 @@
     </div>
     <div class="PokemonCard">
         <div class="pokedex2">
-            <h1 id="pokemonName-1"></h1>
+            <h1 id="pokemonName-h1-1"></h1>
 
         </div>
         <div class="info-container">

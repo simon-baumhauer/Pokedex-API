@@ -40,6 +40,7 @@ body {
     height: 50%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    padding: 15px;
 }
 
 .ImgCenter {
@@ -50,18 +51,54 @@ body {
 }
 
 .ImgCenter img {
-    margin-top: -92px;
+    margin-top: -107px;
     width: 110px;
     height: 90px;
 }
 
 .PokemonCard {
-    height: 400px;
-    width: 250px
+    height: 515px;
+    width: 320px;
+}
+
+.PokemonCollections {
+    margin-bottom: -32px;
+    height: 540px;
+    width: 320px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 19px;
 }
 
 .table-row {
     display: block;
     font-size: 14px;
     color: rgb(116, 119, 121);
+    padding: 5px 0px;
+}
+
+h1 {
+    padding-right: 131px;
+    margin-bottom: 0;
+}
+
+h3 {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.CollectionImg {
+    width: 45px;
+    height: 45px;
+    float: right;
+}
+
+.collectible {
+    background-color: blue;
+    margin: 2px;
+    width: 130px;
+    border-radius: 10px;
 }
