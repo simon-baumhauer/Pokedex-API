@@ -13,7 +13,7 @@
 </head>
 <script>
     let currentPokemon;
-    let pokemons = ['charmander', 'pikachu'];
+    let pokemonsCards = ['charmander', 'pikachu'];
     let PokemonCollections = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise', 'pikachu']
     let PokemonAsJson = [];
 
@@ -28,12 +28,24 @@
             console.log(currentPokemon);
             renderPokemonInfo(i);
         }
+        renderPokemonCards()
     }
 
+    function renderPokemonCards() {
+        for (let i = 0; i < pokemonsCards.length; i++) {
+            const element = pokemonsCards[i];
+            document.getElementById('pokemonName' + i).innerHTML = PokemonAsJson[i]['name'];
+            document.getElementById('pokemonImage-' + i).src = PokemonAsJson[i]['sprites']['other']['home']['front_default'];
+            let statslength = PokemonAsJson[i]['stats'].length;
+            for (let j = 0; j < statslength; j++) {
+                document.getElementById(`stat-${i}-` + j).innerHTML = `${PokemonAsJson[i]['stats'][j]['stat']['name']}${PokemonAsJson[i]['stats'][j]['base_stat']}`;
+            }
+        }
+    }
 
     function renderPokemonInfo(i) {
         document.getElementById('PokemonCollections').innerHTML +=
-            `<div class="collectible" onclick='selected(${i})'>
+            `<div class="collectible color-${i}" onclick='selected(${i})'>
             <h3>${currentPokemon['name']}</h3>
             <img id="PokemonCollectionsImg-${i}" class="CollectionImg">
         </div>`;
@@ -42,36 +54,24 @@
 
     function selected(i) {
         let statslength = PokemonAsJson[i]['stats'].length;
-        document.getElementById('pokemonName1').innerHTML = PokemonAsJson[i]['name'];
+        document.getElementById('pokemonName0').innerHTML = PokemonAsJson[i]['name'];
         document.getElementById('pokemonImage-0').src = PokemonAsJson[i]['sprites']['other']['home']['front_default'];
+        document.getElementById(`pokedex1`).classList.remove(`color-0`);
+        document.getElementById(`pokedex1`).classList.remove(`color-1`);
+        document.getElementById(`pokedex1`).classList.remove(`color-2`);
+        document.getElementById(`pokedex1`).classList.remove(`color-3`);
+        document.getElementById(`pokedex1`).classList.remove(`color-4`);
+        document.getElementById(`pokedex1`).classList.remove(`color-5`);
+        document.getElementById(`pokedex1`).classList.remove(`color-6`);
+        document.getElementById(`pokedex1`).classList.remove(`color-6`);
+        document.getElementById(`pokedex1`).classList.remove(`color-7`);
+        document.getElementById(`pokedex1`).classList.remove(`color-8`);
+        document.getElementById(`pokedex1`).classList.remove(`color-9`);
+        document.getElementById(`pokedex1`).classList.add(`color-${i}`);
         for (let j = 0; j < statslength; j++) {
             document.getElementById(`stat-0-` + j).innerHTML = `${PokemonAsJson[i]['stats'][j]['stat']['name']}${PokemonAsJson[i]['stats'][j]['base_stat']}`;
         }
     }
-
-
-
-
-
-
-
-    // async function loadPokemon() {
-    //     for (let i = 0; i < pokemons.length; i++) {
-    //         const pokemon = pokemons[i];
-    //         let url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`;
-    //         let response = await fetch(url);
-    //         currentPokemon = await response.json();
-    //         console.log(currentPokemon);
-    //         renderPokemonInfo(i);
-    //     }
-    // }
-
-    // function renderPokemonInfo(i) {
-    //     let statslength = currentPokemon['stats'].length;
-    //     document.getElementById('pokemonName-' + i).innerHTML += currentPokemon['name'];
-    //     document.getElementById('pokemonImage-' + i).src = currentPokemon['sprites']['other']['home']['front_default'];
-    //     
-    // }
 </script>
 
 <body onload="loadPokemon()">
@@ -80,8 +80,8 @@
     </div>
 
     <div class="PokemonCard">
-        <div class="pokedex1">
-            <h1 id="pokemonName1"></h1>
+        <div class="pokedex1" id="pokedex1">
+            <h1 id="pokemonName0"></h1>
 
         </div>
         <div class="info-container">
@@ -98,29 +98,6 @@
                 <tr class="table-row" id="stat-0-4">
                 </tr>
                 <tr class="table-row" id="stat-0-5">
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="PokemonCard">
-        <div class="pokedex2">
-            <h1 id="pokemonName-h1-1"></h1>
-
-        </div>
-        <div class="info-container">
-            <div class="ImgCenter"><img id="pokemonImage-1" src="" alt=""></div>
-            <table>
-                <tr class="table-row" id="stat-1-0">
-                </tr>
-                <tr class="table-row" id="stat-1-1">
-                </tr>
-                <tr class="table-row" id="stat-1-2">
-                </tr>
-                <tr class="table-row" id="stat-1-3">
-                </tr>
-                <tr class="table-row" id="stat-1-4">
-                </tr>
-                <tr class="table-row" id="stat-1-5">
                 </tr>
             </table>
         </div>
