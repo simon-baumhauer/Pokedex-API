@@ -28,20 +28,26 @@
             console.log(currentPokemon);
             renderPokemonInfo(i);
         }
-        renderPokemonCards()
+        renderPokemonCards();
     }
 
     function renderPokemonCards() {
-        for (let i = 0; i < pokemonsCards.length; i++) {
-            const element = pokemonsCards[i];
-            document.getElementById('pokemonName' + i).innerHTML = PokemonAsJson[i]['name'];
-            document.getElementById('pokemonImage-' + i).src = PokemonAsJson[i]['sprites']['other']['home']['front_default'];
-            let statslength = PokemonAsJson[i]['stats'].length;
-            for (let j = 0; j < statslength; j++) {
-                document.getElementById(`stat-${i}-` + j).innerHTML = `${PokemonAsJson[i]['stats'][j]['stat']['name']}${PokemonAsJson[i]['stats'][j]['base_stat']}`;
-            }
+        document.getElementById('pokemonName').innerHTML = PokemonAsJson[9]['name'];
+        document.getElementById('pokemonImage').src = PokemonAsJson[9]['sprites']['other']['home']['front_default'];
+        let statslength = PokemonAsJson[0]['stats'].length;
+        for (let j = 0; j < statslength; j++) {
+            document.getElementById(`stat-` + j).innerHTML = `
+            <div class="stats-container">
+            <div class="flexcontainer">
+            <span>${PokemonAsJson[9]['stats'][j]['stat']['name']}</span>
+            <span class="bold">${PokemonAsJson[9]['stats'][j]['base_stat']}</span>
+            </div>
+            <div class="skill-bar" data-label="" style="--width: 50"></div>
+            </div>`;
         }
     }
+
+
 
     function renderPokemonInfo(i) {
         document.getElementById('PokemonCollections').innerHTML +=
@@ -54,8 +60,8 @@
 
     function selected(i) {
         let statslength = PokemonAsJson[i]['stats'].length;
-        document.getElementById('pokemonName0').innerHTML = PokemonAsJson[i]['name'];
-        document.getElementById('pokemonImage-0').src = PokemonAsJson[i]['sprites']['other']['home']['front_default'];
+        document.getElementById('pokemonName').innerHTML = PokemonAsJson[i]['name'];
+        document.getElementById('pokemonImage').src = PokemonAsJson[i]['sprites']['other']['home']['front_default'];
         document.getElementById(`pokedex1`).classList.remove(`color-0`);
         document.getElementById(`pokedex1`).classList.remove(`color-1`);
         document.getElementById(`pokedex1`).classList.remove(`color-2`);
@@ -69,7 +75,15 @@
         document.getElementById(`pokedex1`).classList.remove(`color-9`);
         document.getElementById(`pokedex1`).classList.add(`color-${i}`);
         for (let j = 0; j < statslength; j++) {
-            document.getElementById(`stat-0-` + j).innerHTML = `${PokemonAsJson[i]['stats'][j]['stat']['name']}${PokemonAsJson[i]['stats'][j]['base_stat']}`;
+            document.getElementById(`stat-` + j).innerHTML = `
+            <div class="stats-container">
+            <div class="flexcontainer">
+            <span>${PokemonAsJson[i]['stats'][j]['stat']['name']}</span>
+            <span class="bold" id="skill-number">${PokemonAsJson[i]['stats'][j]['base_stat']}</span>
+            </div>
+            <div class="skill-bar" data-label="" style="--width: ${PokemonAsJson[i]['stats'][j]['base_stat']}"></div>
+            </div>
+            `;
         }
     }
 </script>
@@ -81,23 +95,23 @@
 
     <div class="PokemonCard">
         <div class="pokedex1" id="pokedex1">
-            <h1 id="pokemonName0"></h1>
+            <h1 id="pokemonName"></h1>
 
         </div>
         <div class="info-container">
-            <div class="ImgCenter"><img id="pokemonImage-0" src="" alt=""></div>
+            <div class="ImgCenter"><img id="pokemonImage" src="" alt=""></div>
             <table>
-                <tr class="table-row" id="stat-0-0">
+                <tr class="table-row" id="stat-0">
                 </tr>
-                <tr class="table-row" id="stat-0-1">
+                <tr class="table-row" id="stat-1">
                 </tr>
-                <tr class="table-row" id="stat-0-2">
+                <tr class="table-row" id="stat-2">
                 </tr>
-                <tr class="table-row" id="stat-0-3">
+                <tr class="table-row" id="stat-3">
                 </tr>
-                <tr class="table-row" id="stat-0-4">
+                <tr class="table-row" id="stat-4">
                 </tr>
-                <tr class="table-row" id="stat-0-5">
+                <tr class="table-row" id="stat-5">
                 </tr>
             </table>
         </div>
