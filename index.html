@@ -42,7 +42,7 @@
             <span>${PokemonAsJson[9]['stats'][j]['stat']['name']}</span>
             <span class="bold">${PokemonAsJson[9]['stats'][j]['base_stat']}</span>
             </div>
-            <div class="skill-bar" data-label="" style="--width: 50"></div>
+            <div id="skill-bar${j}" class="skill-bar" data-label="" style="--width: ${PokemonAsJson[9]['stats'][j]['base_stat']}"><div class="inside-bar green" id="test"></div></div>
             </div>`;
         }
     }
@@ -81,7 +81,7 @@
             <span>${PokemonAsJson[i]['stats'][j]['stat']['name']}</span>
             <span class="bold" id="skill-number">${PokemonAsJson[i]['stats'][j]['base_stat']}</span>
             </div>
-            <div class="skill-bar" data-label="" style="--width: ${PokemonAsJson[i]['stats'][j]['base_stat']}"></div>
+            <div class="skill-bar" data-label="" style="--width: ${PokemonAsJson[i]['stats'][j]['base_stat']}"><div class="inside-bar green"></div></div>
             </div>
             `;
         }
