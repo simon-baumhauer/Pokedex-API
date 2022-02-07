@@ -18,14 +18,14 @@ async function loadPokemon() {
 }
 
 function renderPokemonCard() {
-    document.getElementById('pokemonName').innerHTML = PokemonAsJson[9]['name'];
+    document.getElementById('pokemonName').innerHTML = PokemonAsJson[9]['name'].toUpperCase();
     document.getElementById('pokemonImage').src = PokemonAsJson[9]['sprites']['other']['home']['front_default'];
     let statslength = PokemonAsJson[0]['stats'].length;
     for (let j = 0; j < statslength; j++) {
         document.getElementById(`stat-` + j).innerHTML = `
         <div class="stats-container">
         <div class="flexcontainer">
-        <span>${PokemonAsJson[9]['stats'][j]['stat']['name']}</span>
+        <span>${PokemonAsJson[9]['stats'][j]['stat']['name'].toUpperCase()}</span>
         <span class="bold">${PokemonAsJson[9]['stats'][j]['base_stat']}</span>
         </div>
         <div id="skill-bar${j}" class="skill-bar" data-label="" style="--width: ${PokemonAsJson[9]['stats'][j]['base_stat']}"><div class="inside-bar green" id="test"></div></div>
@@ -36,7 +36,7 @@ function renderPokemonCard() {
 function renderPokemonInfo(i) {
     document.getElementById('PokemonCollections').innerHTML +=
         `<div class="collectible color-${i}" onclick='select(${i})'>
-        <h3>${currentPokemon['name']}</h3>
+        <h3>${currentPokemon['name'].toUpperCase()}</h3>
         <img id="PokemonCollectionsImg-${i}" class="CollectionImg">
     </div>`;
     document.getElementById('PokemonCollectionsImg-' + i).src = currentPokemon['sprites']['other']['home']['front_default'];
@@ -44,7 +44,7 @@ function renderPokemonInfo(i) {
 
 function select(i) {
     let statslength = PokemonAsJson[i]['stats'].length;
-    document.getElementById('pokemonName').innerHTML = PokemonAsJson[i]['name'];
+    document.getElementById('pokemonName').innerHTML = PokemonAsJson[i]['name'].toUpperCase();
     document.getElementById('pokemonImage').src = PokemonAsJson[i]['sprites']['other']['home']['front_default'];
     removeColors();
     document.getElementById(`pokedex1`).classList.add(`color-${i}`);
@@ -52,7 +52,7 @@ function select(i) {
         document.getElementById(`stat-` + j).innerHTML = `
         <div class="stats-container">
         <div class="flexcontainer">
-        <span>${PokemonAsJson[i]['stats'][j]['stat']['name']}</span>
+        <span>${PokemonAsJson[i]['stats'][j]['stat']['name'].toUpperCase()}</span>
         <span class="bold" id="skill-number">${PokemonAsJson[i]['stats'][j]['base_stat']}</span>
         </div>
         <div class="skill-bar" data-label="" style="--width: ${PokemonAsJson[i]['stats'][j]['base_stat']}"><div class="inside-bar green"></div></div>
